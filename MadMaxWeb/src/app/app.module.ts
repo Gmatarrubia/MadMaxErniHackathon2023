@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { StatusComponent } from './status/status.component';
@@ -7,6 +8,7 @@ import { ControlComponent } from './control/control.component';
 import { ErrorsComponent } from './errors/errors.component';
 import { AutomaticComponent } from './control/automatic/automatic.component';
 import { ManualComponent } from './control/manual/manual.component';
+import { CommunicationService } from './shared/communication.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,12 @@ import { ManualComponent } from './control/manual/manual.component';
     ManualComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    CommunicationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
