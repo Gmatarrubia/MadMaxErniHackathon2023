@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
 
 import { Automatic } from '../control/automatic/automatic.model';
 
 @Injectable()
 export class CommunicationService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, 
+      private db: AngularFireDatabase) {
     }
 
     getPrueba() {
@@ -24,6 +26,10 @@ export class CommunicationService {
 			.subscribe(response => {
 				console.log(response);
 			});
+    }
+
+    getData(path: string): Observable<any> {
+      return this.db.object(path).valueChanges();
     }
 
 }

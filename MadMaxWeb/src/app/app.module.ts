@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { AppComponent } from './app.component';
 import { StatusComponent } from './status/status.component';
@@ -18,6 +20,16 @@ const routes: Routes = [
   { path: 'manual', component: ManualComponent }
 ];
 
+const firebaseConfig = {
+  apiKey: "AIzaSyB5xvigiAtF3JrdXaJ_hDU9QlTGgTj9nyk",
+  authDomain: "mad-max-erni.firebaseapp.com",
+  databaseURL: "https://mad-max-erni-default-rtdb.firebaseio.com",
+  projectId: "mad-max-erni",
+  storageBucket: "mad-max-erni.appspot.com",
+  messagingSenderId: "93444458875",
+  appId: "1:93444458875:web:3bded79b7823a044d155de"
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +42,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule, 
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   exports: [RouterModule],
   providers: [

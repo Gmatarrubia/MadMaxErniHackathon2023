@@ -1,5 +1,13 @@
 <div >
-    <button type="button" class="btn btn-success" (click)="onStart()">Start</button>
-    <button type="button" class="btn btn-danger" (click)="onStop()">Stop</button>
+    <h4 style="color: antiquewhite; text-align: left;">
+        Automatic control will allow the robot to move through the obstacle course as fast as possible without user action. <br /> <br />Press Start to try it out!
+    </h4>
+    <br />
+    <button type="button" class="btn btn-success" (click)="onStart()" style="margin-right: 20px;">Start</button>
+    <button type="button" class="btn btn-danger" (click)="onStop()">Emergency Stop</button>
+    <!-- <div>
+        <h2>Firebase Data</h2>
+        <p>{{ firebaseData | json }}</p>
+    </div> -->
 </div>
 
