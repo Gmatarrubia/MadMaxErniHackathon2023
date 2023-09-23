@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 
 import { Automatic } from '../control/automatic/automatic.model';
+import { Status } from '../status/status.model';
 
 @Injectable()
 export class CommunicationService {
@@ -22,6 +23,15 @@ export class CommunicationService {
     setAutomatic(data: Automatic) {
       this.http
 			.put('https://mad-max-erni-default-rtdb.firebaseio.com/automatic.json', 
+				data)
+			.subscribe(response => {
+				console.log(response);
+			});
+    }
+
+    setStatus(data: Status) {
+      this.http
+			.put('https://mad-max-erni-default-rtdb.firebaseio.com/status.json', 
 				data)
 			.subscribe(response => {
 				console.log(response);
