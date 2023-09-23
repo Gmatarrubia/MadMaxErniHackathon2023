@@ -8,7 +8,7 @@ margin-top: 50px;">
           State - {{statusFirebaseData.status}}
         </li>
         <li class="list-group-item">
-          Time Running - 00:00:33
+          Time Running - {{ timer | date:'mm:ss:SSS'}}
         </li>
         <li class="list-group-item">
           Speed - {{statusFirebaseData.speed}} m/s
