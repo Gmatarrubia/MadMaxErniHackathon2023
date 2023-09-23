@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CommunicationService } from '../shared/communication.service';
-import { Automatic } from '../control/automatic/automatic.model';
 
 @Component({
   selector: 'app-status',

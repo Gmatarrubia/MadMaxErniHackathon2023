@@ -15,10 +15,10 @@ export class AutomaticComponent {
   constructor(private communicationService: CommunicationService) { }
 
   ngOnInit() {
-    const firebasePath = 'automatic';
-    this.communicationService.getData(firebasePath).subscribe((data) => {
-      this.firebaseData = data;
-    })
+    // const firebasePath = 'automatic';
+    // this.communicationService.getData(firebasePath).subscribe((data) => {
+    //   this.firebaseData = data;
+    // })
   }
 
   onStart() {
