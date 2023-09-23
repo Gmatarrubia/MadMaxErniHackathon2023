@@ -1,4 +1,22 @@
-<div class="container p-3 my-3 border">
-    <h1>Control Container</h1>
-    <app-automatic></app-automatic>      
-</div>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+    
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Select Control</a>
+          </div>
+
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active">
+                <a routerLink="/automatic">Automatic Control</a>
+            </li>
+            <li routerLinkActive="active">
+                <a routerLink="/manual">Manual Control</a>
+            </li>
+        </ul>
+        
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
+

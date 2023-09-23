@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CommunicationService } from '../../shared/communication.service';
+import { Automatic } from './automatic.model';
 
 @Component({
   selector: 'app-automatic',
@@ -11,6 +12,10 @@ export class AutomaticComponent {
   constructor(private communicationService: CommunicationService) { }
 
   onStart() {
-    this.communicationService.getPrueba();
+    this.communicationService.setAutomatic(new Automatic(true));
+  }
+
+  onStop() {
+    this.communicationService.setAutomatic(new Automatic(false));
   }
 }
