@@ -7,6 +7,8 @@
 #include "component/UltrasonicSensor.hpp"
 #include "component/PidController.hpp"	
 #include "component/LineSensor.hpp"
+#include "component/LineSensorController.hpp"
+
 #include <memory>
 class RobotControl
 {
