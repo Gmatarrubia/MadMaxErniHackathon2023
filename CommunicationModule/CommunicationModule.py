@@ -6,7 +6,7 @@ import threading
 
 def initialize_firebase():
     # Initialize Firebase with your service account key
-    cred = credentials.Certificate("/home/madmax/Desktop/firebase-test/credentials.json")
+    cred = credentials.Certificate("./credentials.json")
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://mad-max-erni-default-rtdb.firebaseio.com'
     })
