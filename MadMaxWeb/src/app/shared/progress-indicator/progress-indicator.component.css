@@ -1,0 +1,19 @@
+.progress-bar {
+    display: flex;
+    float: right;
+    justify-content: space-between;
+    width: 280px;
+    background-color: white;
+  }
+  
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc; /* Default circle color */
+    margin-top: -5px;
+  }
+  
+  .circle.active {
+    background-color: #4CAF50; /* Green color for active circles */
+  }

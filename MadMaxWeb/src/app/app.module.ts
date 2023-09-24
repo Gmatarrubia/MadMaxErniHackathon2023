@@ -13,6 +13,7 @@ import { AutomaticComponent } from './control/automatic/automatic.component';
 import { ManualComponent } from './control/manual/manual.component';
 import { CommunicationService } from './shared/communication.service';
 import { ControlService } from './control/control.service';
+import { ProgressIndicatorComponent } from './shared/progress-indicator/progress-indicator.component';
 
 const routes: Routes = [
   { path: '', component: AutomaticComponent },
@@ -37,7 +38,8 @@ const firebaseConfig = {
     ControlComponent,
     ErrorsComponent,
     AutomaticComponent,
-    ManualComponent
+    ManualComponent,
+    ProgressIndicatorComponent
   ],
   imports: [
     BrowserModule,

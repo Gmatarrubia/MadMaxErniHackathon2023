@@ -15,7 +15,15 @@ margin-top: 50px;">
         </li>
         <li class="list-group-item">
           Progress - {{statusFirebaseData.progress}}/7
-          <!-- <progress id="bar" max="7" value="{{statusFirebaseData.progress}}" style="margin-left: 50px;"></progress> -->
+          
+          <app-progress-indicator [progress]="statusFirebaseData.progress"></app-progress-indicator>
         </li>
       </ul>
+      <!-- <li class="list-group-item" style="width: 700; align-items: center;">
+        <video controls width="640" height="400" allow="autoplay">
+          <source src="../../assets/Hackathon - Video Introducción Equipo-20230918_103153-Meeting Recording.mp4" type="video/mp4" />
+            Browser not supported
+        </video>
+      </li> -->
   </div>
+</div>
