@@ -7,7 +7,7 @@
 #include <thread>
 #include <chrono>
 
-LineSensorController::LineSensorController() : mcp3008Addr(0x14)
+LineSensorController::LineSensorController() : mcp3008Addr(0x14), detectionThreshold(400)
 {
     fd = wiringPiI2CSetup(mcp3008Addr);
 
@@ -32,13 +32,24 @@ bool LineSensorController::convertToBool(char s) const
 
 SensorLineState LineSensorController::readLineState()
 {
-    for (int channel = 0; channel < 3; ++channel) 
-    {
-        int readValue = wiringPiI2CReadReg16(fd, 0x68 + (channel << 12));
-        int adcValue = ((readValue & 0x0FF0) >> 4);
-        std::cout << "Adc " << channel << ": " << adcValue << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    }
-
-    return SensorLineState{true, false,true};
+    SensorLineState sensorLineState;
+    int channel = 0;
+    int readValue = wiringPiI2CReadReg16(fd, 0x68 + (channel << 12));
+    int adcValue = ((readValue & 0x0FF0) >> 4);
+    if(adcValue >= detectionThreshold) sensorLineState.rightSensor = true;
+    std::cout << "Adc " << channel << ": " << adcValue << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    channel++;
+    readValue = wiringPiI2CReadReg16(fd, 0x68 + (channel << 12));
+    adcValue = ((readValue & 0x0FF0) >> 4);
+    if(adcValue >= detectionThreshold) sensorLineState.centralSensor = true;
+    std::cout << "Adc " << channel << ": " << adcValue << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    channel++;
+    readValue = wiringPiI2CReadReg16(fd, 0x68 + (channel << 12));
+    adcValue = ((readValue & 0x0FF0) >> 4);
+    std::cout << "Adc " << channel << ": " << adcValue << std::endl;
+    if(adcValue >= detectionThreshold) sensorLineState.leftSensor = true;
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    return sensorLineState;
 }

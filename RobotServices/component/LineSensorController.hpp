@@ -3,9 +3,9 @@
 
 struct SensorLineState
 {
-    bool rightSensor;
-    bool centralSensor;
-    bool leftSensor;
+    bool rightSensor = false;
+    bool centralSensor = false;
+    bool leftSensor = false;
 };
 
 class LineSensorController
@@ -13,6 +13,7 @@ class LineSensorController
 private:
     int fd;
     uint32_t mcp3008Addr;
+    uint32_t detectionThreshold;
 public:
     LineSensorController();
     ~LineSensorController();
