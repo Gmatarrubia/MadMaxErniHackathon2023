@@ -1,7 +1,7 @@
 export class Automatic {
-	public move: boolean;
+	public move: number;
 
-	constructor(move: boolean) {
+	constructor(move: number) {
         this.move = move;
     }
 }

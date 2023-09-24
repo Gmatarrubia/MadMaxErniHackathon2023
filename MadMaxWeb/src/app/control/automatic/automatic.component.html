@@ -3,7 +3,8 @@
         Automatic control will allow the robot to move through the obstacle course as fast as possible without user action. <br /> <br />Press Start to try it out!
     </h4>
     <br />
-    <button type="button" class="btn btn-success" (click)="onStart()" style="margin-right: 20px; font-size: 30px;">Start</button>
+    <button type="button" *ngIf="!isStarted" class="btn btn-success" (click)="onStart()" style="margin-right: 20px; font-size: 30px;">Start</button>
+    <button type="button" *ngIf="isStarted" class="btn btn-warning" (click)="onPause()" style="margin-right: 20px; font-size: 30px;">Pause</button>
     <button type="button" class="btn btn-danger" (click)="onStop()" style="margin-right: 20px; font-size: 30px;">Emergency Stop</button>
     <!-- <div>
         <h2>Firebase Data</h2>

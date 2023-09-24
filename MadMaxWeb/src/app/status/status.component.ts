@@ -24,14 +24,18 @@ export class StatusComponent {
 
     this.communicationService.getData('automatic').subscribe((data) => {
       this.automaticFirebaseData = data;
-      if (data.move) {
+      if (data.move === 1) {
         const startTime = Date.now() - (this.timer || 0);
         this.timerRef = setInterval(() => {
           this.timer = Date.now() - startTime;
         })
       } 
-      else {
+      else if (data.move === 0) {
         this.timer = 0;
+        clearInterval(this.timerRef);
+      } 
+      else if (data.move === 2) {
+        //this.timer = 0;
         clearInterval(this.timerRef);
       }
     })
