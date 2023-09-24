@@ -1,4 +1,4 @@
-export class Automatic {
+export class Manual {
 	public up: boolean;
 	public down: boolean;
 	public right: boolean;

@@ -1,7 +1,27 @@
-
-<button type="button" class="btn btn-success" (click)="onForward()">Forward</button>
-<button type="button" class="btn btn-danger" (click)="onBackward()">Backward</button>
-<button type="button" class="btn btn-warning" (click)="onRightTurn()">Right Turn</button>
-<button type="button" class="btn btn-info" (click)="onLeftTurn()">Left Turn</button>
+<div>
+    <h4 style="color: antiquewhite; text-align: left;">
+        Manual control allows the user to control the robot using the following keys: <br />
+    </h4>
+    <br />
+    <button type="button" 
+        [ngClass]="{'btn btn-success' : !currentManual.up, 'btn btn-basic': currentManual.up}" 
+        (click)="onForward()" 
+        (keyup.arrowup)="onForward()"
+        style="margin-right: 20px; margin-bottom: 30px; font-size: 30px;">(↑) Forward</button>
+    <br />
+    <button type="button" 
+        [ngClass]="{'btn btn-info' : !currentManual.left, 'btn btn-basic': currentManual.left}" 
+        (click)="onLeftTurn()" 
+        style="margin-right: 60px; font-size: 30px;">(←) Left Turn</button>
+    <button type="button" 
+        [ngClass]="{'btn btn-warning' : !currentManual.right, 'btn btn-basic': currentManual.right}"
+        (click)="onRightTurn()" 
+        style="margin-left: 60px; font-size: 30px;">Right Turn (→)</button>
+    <br />
+    <button type="button" 
+        [ngClass]="{'btn btn-danger' : !currentManual.down, 'btn btn-basic': currentManual.down}" 
+        (click)="onBackward()" 
+        style="margin-right: 20px; margin-top: 30px; font-size: 30px;">(↓) Backward</button>
+</div>
 
 
