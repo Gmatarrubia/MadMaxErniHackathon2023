@@ -8,10 +8,10 @@
 
         <ul class="nav navbar-nav">
             <li routerLinkActive="active">
-                <a routerLink="/automatic">Automatic Control</a>
+                <a (click)="onAutomatic()" routerLink="/automatic">Automatic Control</a>
             </li>
-            <li routerLinkActive="active" class="disabled">
-                <a routerLink="/manual">Manual Control</a>
+            <li routerLinkActive="active">
+                <a (click)="onManual()" routerLink="/manual">Manual Control</a>
             </li>
         </ul>
         

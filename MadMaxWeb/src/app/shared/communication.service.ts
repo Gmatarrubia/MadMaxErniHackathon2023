@@ -4,6 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 
 import { Automatic } from '../control/automatic/automatic.model';
+import { Manual } from '../control/manual/manual.model';
 import { Status } from '../status/status.model';
 
 @Injectable()
@@ -20,9 +21,27 @@ export class CommunicationService {
       }) 
 	  }
 
+    setControlType(data: number) {
+      this.http
+			.put('https://mad-max-erni-default-rtdb.firebaseio.com/controlType.json', 
+				{type: data})
+			.subscribe(response => {
+				console.log(response);
+			});
+    }
+
     setAutomatic(data: Automatic) {
       this.http
 			.put('https://mad-max-erni-default-rtdb.firebaseio.com/automatic.json', 
+				data)
+			.subscribe(response => {
+				console.log(response);
+			});
+    }
+
+    setManual(data: Manual) {
+      this.http
+			.put('https://mad-max-erni-default-rtdb.firebaseio.com/manual.json', 
 				data)
 			.subscribe(response => {
 				console.log(response);
