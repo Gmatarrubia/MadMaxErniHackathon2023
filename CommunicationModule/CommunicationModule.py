@@ -28,7 +28,7 @@ def initialize_firebase():
     # Fetch the initial value of 'controlType' from the database
     ref = db.reference('controlType')
     initial_control_data = ref.get()
-    
+
     if initial_control_data is not None:
         global CONTROL_MODE
         CONTROL_MODE = initial_control_data.get('type', 0)  # Default to 0 if 'type' is not found
@@ -74,6 +74,10 @@ def start_socket_read(socket, pubSock):
                 STATUS = str(value)
             elif topic == "object_detected":
                 OBJECT_DETECTED = str(value)
+
+            # Send sensor state updates
+            if OBJECT_DETECTED == 1:
+                print("Object detected sending stop")
                 pubSock.send_string(f"manual_move stop")
             status_data = {"progress": PROGRESS, "speed": SPEED, "status": STATUS}
             print("status: ", status_data)
