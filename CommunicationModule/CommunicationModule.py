@@ -98,9 +98,9 @@ def manual_listener_callback(event, pubSock):
     global MANUAL_MOVE
     manual_data = event.data
     if manual_data.get('down', 0) == True:
-        MANUAL_MOVE = "back"
+        MANUAL_MOVE = "backward"
     elif manual_data.get('up', 0) == True:
-        MANUAL_MOVE = "fordward"
+        MANUAL_MOVE = "forward"
     elif manual_data.get('left', 0) == True:
         MANUAL_MOVE = "left"
     elif manual_data.get("right", 0) == True:
