@@ -32,7 +32,7 @@
             "name": "CollisionService test",
             "type": "python",
             "request": "launch",
-            "program": "RobotServices/progressService.py",
+            "program": "RobotServices/collisionService.py",
             "console": "integratedTerminal",
             "justMyCode": true
         },

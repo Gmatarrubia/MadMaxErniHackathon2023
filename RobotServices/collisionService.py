@@ -11,7 +11,7 @@ context = zmq.Context()
 
 #initialize outcoming comms
 pubSocket = context.socket(zmq.PUB)
-pubSocket.bind("ipc:///tmp/fromWebCom")
+pubSocket.bind("ipc:///tmp/toWebCom")
 
 #Global status
 PROGRESS = 0
@@ -21,7 +21,7 @@ def main():
     try:
         while True:
             distance = px.ultrasonic.read()
-            if distance < 300:
+            if distance < 9:
                 OBJECT_DETECTED = 1
             else:
                 OBJECT_DETECTED = 0

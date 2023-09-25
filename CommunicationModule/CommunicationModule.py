@@ -57,7 +57,7 @@ def start_listener(collection_name, pubsock, callback):
     return listener_thread
 
 # Socket callback
-def start_socket_read(socket):
+def start_socket_read(socket, pubSock):
     def listener_function():
         global SPEED
         global STATUS
@@ -74,6 +74,7 @@ def start_socket_read(socket):
                 STATUS = str(value)
             elif topic == "object_detected":
                 OBJECT_DETECTED = str(value)
+                pubSock.send_string(f"manual_move stop")
             status_data = {"progress": PROGRESS, "speed": SPEED, "status": STATUS}
             print("status: ", status_data)
             update_status(status_data)
@@ -130,7 +131,7 @@ def main():
     fromWebSock = context.socket(zmq.PUB)
     fromWebSock.bind("ipc:///tmp/fromWebCom")
 
-    start_socket_read(toWebSock)
+    start_socket_read(toWebSock, fromWebSock)
     initialize_firebase()
     set_initial_values()
 
