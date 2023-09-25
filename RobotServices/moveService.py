@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from picarx import Picarx
 import zmq
 import time
@@ -20,6 +22,8 @@ pubSocket.bind("ipc:///tmp/toWebCom")
 CONTROL_MODE = 0
 SPEED = 0
 STATUS = "initial"
+PROGRESS = 0
+
 def move(operate:str, speed):
     global SPEED
     global STATUS
@@ -48,6 +52,7 @@ def move(operate:str, speed):
 def main():
     global CONTROL_MODE
     global SPEED
+    global PROGRESS
     try:
         while True:
             message = subSocket.recv_string()
@@ -58,9 +63,9 @@ def main():
             if str(topic) == "manual_move":
                 SPEED = 10  # Default speed for manual mode
                 move(value, SPEED)
+
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C
-        stop_listeners()
         print("Program stopped.")
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ AUTOMATIC_MOVE = 0
 MANUAL_MOVE = 0
 PROGRESS = 0
 SPEED = 0
+OBJECT_DETECTED = 0
 STATUS = "paused"
 active_listener_threads = [] # keep track of active listener threads
 
@@ -61,6 +62,7 @@ def start_socket_read(socket):
         global SPEED
         global STATUS
         global PROGRESS
+        global OBJECT_DETECTED
         while True:
             message = socket.recv_string()
             topic , value = message.split(' ')
@@ -70,6 +72,8 @@ def start_socket_read(socket):
                 PROGRESS = int(value)
             elif topic == "status":
                 STATUS = str(value)
+            elif topic == "object_detected":
+                OBJECT_DETECTED = str(value)
             status_data = {"progress": PROGRESS, "speed": SPEED, "status": STATUS}
             print("status: ", status_data)
             update_status(status_data)
@@ -122,6 +126,7 @@ def main():
     toWebSock.setsockopt_string(zmq.SUBSCRIBE, "progress")
     toWebSock.setsockopt_string(zmq.SUBSCRIBE, "speed")
     toWebSock.setsockopt_string(zmq.SUBSCRIBE, "status")
+    toWebSock.setsockopt_string(zmq.SUBSCRIBE, "object_detected")
     fromWebSock = context.socket(zmq.PUB)
     fromWebSock.bind("ipc:///tmp/fromWebCom")
 

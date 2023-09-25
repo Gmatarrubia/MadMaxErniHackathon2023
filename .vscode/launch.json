@@ -19,6 +19,22 @@
             "program": "RobotServices/moveService.py",
             "console": "integratedTerminal",
             "justMyCode": true
-        }
+        },
+        {
+            "name": "ProgressService test",
+            "type": "python",
+            "request": "launch",
+            "program": "RobotServices/progressService.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "CollisionService test",
+            "type": "python",
+            "request": "launch",
+            "program": "RobotServices/progressService.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
     ]
 }
