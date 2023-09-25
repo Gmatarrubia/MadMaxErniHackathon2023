@@ -29,6 +29,9 @@ Download this repository to your Raspberry Pi:
 git clone https://github.com/FernandoAnegon/ErniHackathon2023.git
 ```
 ## Installation
+`MadMaxWeb` is the web app which allows the user to control the robot remotely. It is a SPA (Single Page Application) built using the Angular framework. The web app allows two types of control over the robot:
+1. Automatic Mode: No user interaction required for the robot to move through the obstacle course as fast as possible.
+2. Manual Mode: The user makes use of the direction buttons displayed on screen OR the arrow keys from their keyboard to control the robot´s movement.
 
 
 ## About the Team
