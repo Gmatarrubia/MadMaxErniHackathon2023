@@ -18,5 +18,6 @@ public:
     LineSensorController();
     ~LineSensorController();
     SensorLineState readLineState();
+    SensorLineState readLineState2();
     bool convertToBool(char s) const;
 };

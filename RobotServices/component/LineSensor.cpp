@@ -4,38 +4,37 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
+
 LineSensor::LineSensor()
 {
-    const char* socket_file = "/tmp/lineSensor.s";
-    int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    if (sockfd == -1) 
-    {
-        std::cerr << "Error socket creation" << std::endl;
-    }
-
-    memset(&addr, 0, sizeof(addr));
-    addr.sun_family = AF_UNIX;
-    strncpy(addr.sun_path, "/tmp/lineSensor.s", sizeof(addr.sun_path) - 1);
-
-    if (connect(sockfd, (struct sockaddr*)&addr, sizeof(addr)) == -1) 
-    {
-        std::cerr << "Error connecting to server" << std::endl;
-        close(sockfd);
-    }    
+    
 }
 
 
 LineSensor::~LineSensor()
 {
-    close(sockfd);
+    
 }
 
 
-bool LineSensor::convertToBool(char s) const
+LineState LineSensor::convertToBool(const std::string& sensorValues) const
 {
-     return true;//s != "0";
+    LineState sensorState;
+    sensorState.rightSensor = sensorValues[0] == '1';
+    sensorState.centralSensor = sensorValues[1] == '1';
+    sensorState.leftSensor = sensorValues[2] == '1';
+     return sensorState;
 }
 
+LineState LineSensor::readState()
+{
+    std::ifstream file("/home/madmax/ErniHackathon2023/RobotServices/component/sensorLine/data.txt");
+    std::string sensorState;
+    getline(file, sensorState);
+    std::cout << "Received data: " << sensorState << std::endl;
+    file.close();
+    return convertToBool(sensorState);
+}
 
 LineState LineSensor::readLineState()
 {
@@ -61,5 +60,5 @@ LineState LineSensor::readLineState()
 
     std::cout.write(buffer, bytesRead);
 
-    return LineState{convertToBool(buffer[0]), convertToBool(buffer[1]), convertToBool(buffer[2])};
+    return LineState{};//{convertToBool(buffer[0]), convertToBool(buffer[1]), convertToBool(buffer[2])};
 }

@@ -2,6 +2,9 @@
 #include <string>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 struct LineState
 {
@@ -13,7 +16,7 @@ struct LineState
 class LineSensor
 {
 private:
-    bool convertToBool(char) const;
+    LineState convertToBool(const std::string& sensorValues) const;
     std::string m_cmd;
     int sockfd;
     struct sockaddr_un addr;
@@ -22,4 +25,5 @@ public:
     LineSensor(/* args */);
     ~LineSensor();
     LineState readLineState();
+    LineState readState();
 };
