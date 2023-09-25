@@ -15,34 +15,46 @@ export class ManualComponent {
 
   onForward() {
     this.currentManual.up = !this.currentManual.up;
-    if (this.currentManual.up && this.currentManual.down) {
-      this.currentManual.down = !this.currentManual.down;
-    }
+    this.currentManual.down = false;
+    this.currentManual.right = false;
+    this.currentManual.left = false;
+    // if (this.currentManual.up && this.currentManual.down) {
+    //   this.currentManual.down = !this.currentManual.down;
+    // }
     this.communicationService.setManual(this.currentManual);
     console.log("onForward");
   }
 
   onBackward() {
     this.currentManual.down = !this.currentManual.down;
-    if (this.currentManual.up && this.currentManual.down) {
-      this.currentManual.up = !this.currentManual.up;
-    }
+    this.currentManual.up = false;
+    this.currentManual.right = false;
+    this.currentManual.left = false;
+    // if (this.currentManual.up && this.currentManual.down) {
+    //   this.currentManual.up = !this.currentManual.up;
+    // }
     this.communicationService.setManual(this.currentManual);
   }
 
   onRightTurn() {
     this.currentManual.right = !this.currentManual.right;
-    if (this.currentManual.right && this.currentManual.left) {
-      this.currentManual.left = !this.currentManual.left;
-    }
+    this.currentManual.down = false;
+    this.currentManual.up = false;
+    this.currentManual.left = false;
+    // if (this.currentManual.right && this.currentManual.left) {
+    //   this.currentManual.left = !this.currentManual.left;
+    // }
     this.communicationService.setManual(this.currentManual);
   }
 
   onLeftTurn() {
     this.currentManual.left = !this.currentManual.left;
-    if (this.currentManual.right && this.currentManual.left) {
-      this.currentManual.right = !this.currentManual.right;
-    }
+    this.currentManual.down = false;
+    this.currentManual.right = false;
+    this.currentManual.up = false;
+    // if (this.currentManual.right && this.currentManual.left) {
+    //   this.currentManual.right = !this.currentManual.right;
+    // }
     this.communicationService.setManual(this.currentManual);
   }
 
