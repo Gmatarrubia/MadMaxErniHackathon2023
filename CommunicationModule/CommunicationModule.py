@@ -73,12 +73,15 @@ def start_socket_read(socket, pubSock):
             elif topic == "status":
                 STATUS = str(value)
             elif topic == "object_detected":
-                OBJECT_DETECTED = str(value)
+                OBJECT_DETECTED = int(value)
 
+            # TODO: Now, detect an object makes the robot imposible to resume
+            # because it is stopped where always is detecting an object.
             # Send sensor state updates
-            if OBJECT_DETECTED == 1:
-                print("Object detected sending stop")
-                pubSock.send_string(f"manual_move stop")
+            #if OBJECT_DETECTED == 1:
+            #    print("Object detected sending stop")
+            #    pubSock.send_string(f"manual_move emergency")
+
             status_data = {"progress": PROGRESS, "speed": SPEED, "status": STATUS}
             print("status: ", status_data)
             update_status(status_data)

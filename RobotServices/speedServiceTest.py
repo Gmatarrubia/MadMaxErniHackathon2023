@@ -1,10 +1,8 @@
 #!/usr/bin/python
 
-from picarx import Picarx
 import zmq
 import time
-
-px = Picarx()
+import random
 
 # Initialize incoming comms
 context = zmq.Context()
@@ -14,18 +12,16 @@ pubSocket = context.socket(zmq.PUB)
 pubSocket.bind("ipc:///tmp/toWebCom")
 
 #Global status
-PROGRESS = 0
+SPEED = 0
 
 def main():
-    global PROGRESS
+    global SPEED
     try:
         while True:
-            value = px.get_grayscale_data()
-            linea = px.get_line_status(value)
-            if linea != "stop" :
-                PROGRESS = PROGRESS + 1
-                pubSocket.send_string(f"progress {PROGRESS}")
-                time.sleep(5)
+            SPEED = random.randint(5, 30)
+            pubSocket.send_string(f"speed {SPEED}")
+            print(f"Sent speed: {SPEED}")
+            time.sleep(10)
 
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C

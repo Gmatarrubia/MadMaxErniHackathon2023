@@ -1,10 +1,8 @@
 #!/usr/bin/python
 
-from picarx import Picarx
 import zmq
 import time
 
-px = Picarx()
 
 # Initialize incoming comms
 context = zmq.Context()
@@ -20,12 +18,10 @@ def main():
     global PROGRESS
     try:
         while True:
-            value = px.get_grayscale_data()
-            linea = px.get_line_status(value)
-            if linea != "stop" :
-                PROGRESS = PROGRESS + 1
-                pubSocket.send_string(f"progress {PROGRESS}")
-                time.sleep(5)
+            PROGRESS = PROGRESS + 1
+            pubSocket.send_string(f"progress {PROGRESS}")
+            print(f"Sent progress: {PROGRESS}")
+            time.sleep(10)
 
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C
