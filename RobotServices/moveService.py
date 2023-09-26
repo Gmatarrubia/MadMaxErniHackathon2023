@@ -27,6 +27,12 @@ PROGRESS = 0
 def move(operate:str, speed):
     global SPEED
     global STATUS
+    # TODO: Test this code
+    #if operate == 'emergency':
+    #    px.set_dir_servo_angle(0)
+    #    px.backward(speed)
+    #    time.sleep(2)
+    #    operate = 'stop'
     if operate == 'stop':
         px.stop()
         SPEED = 0

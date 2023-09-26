@@ -43,6 +43,12 @@ def update_status(status_data):
     ref = db.reference('status')
     ref.update(status_data)
 
+def update_db_manual_stop():
+    # Update manuals value in db
+    data = {'down' : False, 'left': False, 'right': False, 'up': False}
+    ref = db.reference('manual')
+    ref.update(data)
+
 # Function to start a listener thread
 def start_listener(collection_name, pubsock, callback):
     ref = db.reference(collection_name)
@@ -81,6 +87,7 @@ def start_socket_read(socket, pubSock):
             #if OBJECT_DETECTED == 1:
             #    print("Object detected sending stop")
             #    pubSock.send_string(f"manual_move emergency")
+            #    update_db_manual_stop()
 
             status_data = {"progress": PROGRESS, "speed": SPEED, "status": STATUS}
             print("status: ", status_data)
